@@ -1,0 +1,36 @@
+# ── Secrets — NEVER commit ──────────────────────────────────────────
+.env
+*.key
+
+# ── Portable Python + environments created by setup.bat (large, machine-specific) ──
+python310/
+python310.tar.gz
+env_operating/
+env_omniparser/
+operating/
+.venv/
+venv/
+
+# ── OmniParser model weights (~1GB, downloaded by setup.bat) ────────
+# The OmniParser CODE is committed; only the big weights are excluded.
+OmniParser/weights/
+
+# ── Agent runtime data ──────────────────────────────────────────────
+agent_chrome_profile/
+logs/
+debug/
+*.log
+
+# ── Python ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ── Playwright bundled browsers ─────────────────────────────────────
+ms-playwright/
+
+# ── OS / IDE ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

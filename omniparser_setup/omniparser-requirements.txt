@@ -1,0 +1,35 @@
+# OmniParser perception server — installed into env_omniparser by setup.bat.
+# These versions are PINNED to the exact combination that works together
+# (we hit real conflicts otherwise: opencv, numpy, transformers, paddle).
+
+# Vision / detection
+torch
+torchvision
+ultralytics==8.3.70
+transformers==4.45.2
+einops==0.8.0
+timm
+accelerate
+supervision==0.18.0
+
+# OCR
+easyocr
+paddlepaddle==2.6.2          # CPU build — avoids CUDA conflict with torch
+paddleocr
+
+# OpenCV — contrib build at this exact version satisfies paddle + supervision + ultralytics
+opencv-contrib-python==4.6.0.66
+numpy==1.26.4
+
+# Imported by OmniParser's util/utils.py at module load (needed even though we
+# don't use the Azure/OpenAI captioning path)
+openai>=1.3.5
+requests>=2.28.0
+matplotlib>=3.7.0
+
+# Server + weight download
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.9
+huggingface_hub>=0.24.0
+Pillow>=10.0.0
