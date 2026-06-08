@@ -1,6 +1,6 @@
 <h1>🤖 Autonomous AI Agent for Windows</h1>
 <p><b>An open-source AI agent that operates your entire PC — apps and the web — from a single prompt.</b></p>
-It works on **both the desktop and the web**, and decides which to use on its own.
+It works on <b>both the desktop and the web</b> and decides which to use on its own.
 
 ---
 
@@ -38,8 +38,10 @@ It works on **both the desktop and the web**, and decides which to use on its ow
 
 **Desktop tasks** use the OmniParser vision models. In the default setup these run on the **CPU**, so each screen analysis takes a few seconds up to ~a minute depending on your CPU and RAM. (Loading the models on first start also takes ~30s–2min.)
 
-> 🖥️ **The demo above was recorded on:** NVIDIA GeForce RTX 4060 Laptop GPU (8 GB) · Windows 11
-> Note: the default install runs the vision models on **CPU**, so this is CPU-speed — enabling CUDA (see the GPU tip below) makes it significantly faster. Your speed scales with your hardware.
+>**The demo above was recorded on:** NVIDIA GeForce RTX 4060 Laptop GPU (8 GB) · Windows 11<br>
+>The default install runs the vision models on **CPU**, so this is CPU-speed <br>
+> Enabling CUDA (see the GPU tip below) makes it significantly faster. Your speed scales with your hardware.
+
 
 **Tips to make it faster:**
 - **Prefer web tasks** when possible — they don't use the vision models at all.
@@ -135,3 +137,15 @@ Issues and PRs are welcome! If you find this useful, please ⭐ **star the repo*
 ## 📄 License
 
 MIT — see [LICENSE](LICENSE).
+
+
+<br>
+<br>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?logo=windows" alt="platform"/>
+  <img src="https://img.shields.io/badge/python-3.10-3776AB?logo=python&logoColor=white" alt="python"/>
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="license"/>
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="prs"/>
+  <img src="https://img.shields.io/github/stars/Soham-bansal/Self-Operating-Computer-System?style=social" alt="stars"/>
+</p>
