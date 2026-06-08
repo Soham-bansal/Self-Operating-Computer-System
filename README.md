@@ -29,7 +29,7 @@ It works on **both the desktop and the web** and decides which to use on its own
 
 ## 🧱 Architecture
 
-(assets/architecture.png)
+!(assets/architecture.png)
 
 ---
 
