@@ -1,5 +1,5 @@
-<h1 align="center">🤖 Autonomous AI Agent for Windows</h1>
-<p align="center"><b>An open-source AI agent that operates your entire PC — apps and the web — from a single prompt.</b></p>
+<h1>🤖 Autonomous AI Agent for Windows</h1>
+<p><b>An open-source AI agent that operates your entire PC — apps and the web — from a single prompt.</b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?logo=windows" alt="platform"/>
@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/github/stars/Soham-bansal/Self-Operating-Computer-System?style=social" alt="stars"/>
 </p>
 
-It works on **both the desktop and the web**, and decides which to use on its own.
+<p>It works on **both the desktop and the web**, and decides which to use on its own.
 
 ---
 
@@ -73,7 +73,7 @@ It works on **both the desktop and the web**, and decides which to use on its ow
    - downloads the ~1 GB OmniParser model weights
 
    The OmniParser perception code is **bundled** in this repo, so only the weights download. It's a complete sandbox — everything lives inside the project folder.
-   ⏱️ Takes ~5–15 minutes depending on your connection.
+   Takes ~5–15 minutes depending on your connection.
 
 3. **Add your API key** — start the app, click **⚙ Settings**, paste your OpenAI and/or Gemini key, and pick a provider/model per agent.
 
