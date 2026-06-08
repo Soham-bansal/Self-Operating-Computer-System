@@ -10,6 +10,14 @@ It works on **both the desktop and the web** and decides which to use on its own
 
 ---
 
+
+## Demo Video
+
+![Demo](assets/project_gif.gif)
+
+
+
+
 ## ✨ Features
 
 - **Vision + DOM hybrid** — uses Microsoft **OmniParser** (vision) for native Windows apps,
