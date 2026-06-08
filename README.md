@@ -1,15 +1,6 @@
 <h1>🤖 Autonomous AI Agent for Windows</h1>
 <p><b>An open-source AI agent that operates your entire PC — apps and the web — from a single prompt.</b></p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?logo=windows" alt="platform"/>
-  <img src="https://img.shields.io/badge/python-3.10-3776AB?logo=python&logoColor=white" alt="python"/>
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="license"/>
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="prs"/>
-  <img src="https://img.shields.io/github/stars/Soham-bansal/Self-Operating-Computer-System?style=social" alt="stars"/>
-</p>
-
-<p>It works on **both the desktop and the web**, and decides which to use on its own.
+It works on **both the desktop and the web**, and decides which to use on its own.
 
 ---
 
