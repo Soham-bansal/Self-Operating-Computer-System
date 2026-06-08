@@ -57,7 +57,7 @@ It works on <b>both the desktop and the web</b> and decides which to use on its 
 
 1. **Get the repo** — *Code → Download ZIP* and extract, or:
    ```bash
-   git clone https://github.com/Soham-bansal/Self-Operating-Computer-System.git
+   git clone https://github.com/Soham-bansal/Autonomous-AI-Agent-For-Windows.git
    ```
 2. **Double-click `setup.bat`.** It automatically:
    - downloads a **self-contained Python 3.10** into `python310\` (works the same on any machine — even if you have Python 3.12 installed)
