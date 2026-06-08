@@ -9,12 +9,6 @@
   <img src="https://img.shields.io/github/stars/Soham-bansal/Self-Operating-Computer-System?style=social" alt="stars"/>
 </p>
 
-<p align="center">
-  <i>"Open YouTube and play a lo-fi playlist."</i> &nbsp;•&nbsp;
-  <i>"Open Notepad and write my meeting notes."</i> &nbsp;•&nbsp;
-  <i>"Search Google for today's news and summarize it."</i>
-</p>
-
 It works on **both the desktop and the web**, and decides which to use on its own.
 
 ---
@@ -79,9 +73,6 @@ It works on **both the desktop and the web**, and decides which to use on its ow
    - downloads the ~1 GB OmniParser model weights
 
    The OmniParser perception code is **bundled** in this repo, so only the weights download. It's a complete sandbox — everything lives inside the project folder.
-
-   > **Resumable:** setup runs in 4 checkpointed steps. If one fails (e.g. a network drop), fix it and run `setup.bat` again — it skips finished steps and resumes. To redo one part, run the matching script in `setup_steps\`. For a clean rebuild, delete `.setup_state\` (and the `env_*` folders).
-
    ⏱️ Takes ~5–15 minutes depending on your connection.
 
 3. **Add your API key** — start the app, click **⚙ Settings**, paste your OpenAI and/or Gemini key, and pick a provider/model per agent.
