@@ -33,6 +33,14 @@ It works on **both the desktop and the web**, and decides which to use on its ow
 
 ---
 
+
+## Demo Video
+
+![Demo](assets/project_gif.gif)
+
+
+
+
 ## ✨ Features
 
 - **Vision + DOM hybrid** — Microsoft **OmniParser** (vision) for native Windows apps, and
@@ -53,6 +61,7 @@ It works on **both the desktop and the web**, and decides which to use on its ow
 
 ## 🧱 Architecture
 
+<<<<<<< HEAD
 <p align="center">
   <img src="assets/architecture.png" width="720" alt="architecture"/>
 </p>
@@ -80,6 +89,9 @@ CPU and RAM. (Loading the models on first start also takes ~30s–2min.)
 - **More RAM helps a lot** — loading the models when RAM is tight causes disk swapping.
 - **Use a GPU (optional)** — the default install uses CPU PyTorch. If you have an NVIDIA
   GPU, installing CUDA PyTorch in `env_omniparser` speeds vision up dramatically.
+=======
+![Architecture](assets/architecture.png)
+>>>>>>> 4b6e71b807932844efe69ecc9e5271f759f2e06b
 
 ---
 
