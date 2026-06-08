@@ -29,17 +29,7 @@ It works on **both the desktop and the web** and decides which to use on its own
 
 ## 🧱 Architecture
 
-```
-        Desktop UI (PySide6)
-                │  HTTP
-        Backend (FastAPI) ── Orchestrator (adaptive ReAct loop)
-                │                 ├─ Planner / Navigator / Verifier  (LLM)
-                │                 ├─ Skills library
-                │                 ├─ Executor (mouse/keyboard, pyautogui)
-                │                 └─ mode router: web vs desktop
-                ├─ Desktop perception → OmniParser server (vision)  :8010
-                └─ Web perception/actions → Playwright (real Chrome DOM)
-```
+(assets/architecture.png)
 
 ---
 
