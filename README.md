@@ -1,98 +1,131 @@
-# Self-Operating-System 🤖🖥️
+<h1 align="center">🤖 Autonomous AI Agent for Windows</h1>
+<p align="center"><b>An open-source AI agent that operates your entire PC — apps and the web — from a single prompt.</b></p>
 
-A **full-PC autonomous AI agent for Windows**. Type a task in plain English and the
-agent sees your screen, controls the mouse & keyboard, navigates websites and apps,
-recovers from mistakes, and asks you for input when needed.
+<p align="center">
+  <b>A full-PC autonomous AI agent for Windows.</b><br/>
+  Type a task in plain English — the agent sees your screen, controls the mouse &amp; keyboard,
+  navigates websites and apps, recovers from mistakes, and asks you for input when needed.
+</p>
 
-> "Find the cheapest iPhone 17 Pro online and add it to the cart, then ask me before paying."
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?logo=windows" alt="platform"/>
+  <img src="https://img.shields.io/badge/python-3.10-3776AB?logo=python&logoColor=white" alt="python"/>
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="license"/>
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="prs"/>
+  <img src="https://img.shields.io/github/stars/Soham-bansal/Self-Operating-Computer-System?style=social" alt="stars"/>
+</p>
 
-It works on **both the desktop and the web** and decides which to use on its own.
+<p align="center">
+  <i>"Open YouTube and play a lo-fi playlist."</i> &nbsp;•&nbsp;
+  <i>"Open Notepad and write my meeting notes."</i> &nbsp;•&nbsp;
+  <i>"Search Google for today's news and summarize it."</i>
+</p>
+
+It works on **both the desktop and the web**, and decides which to use on its own.
+
+---
+
+## 🎬 Demo
+
+<p align="center">
+  <img src="assets/project_gif.gif" width="850" alt="demo"/>
+</p>
 
 ---
 
 ## ✨ Features
 
-- **Vision + DOM hybrid** — uses Microsoft **OmniParser** (vision) for native Windows apps,
-  and **Playwright** (real browser DOM) for websites — picking the right one automatically.
-- **Adaptive agent loop** — perceive → decide → act → verify → adapt (handles popups,
-  profile pickers, loading screens on its own).
-- **Set-of-Mark grounding** — numbered on-screen elements, so clicks land precisely.
-- **Human-in-the-loop** — pauses and asks you for OTPs, passwords, payment confirmation
-  (never enters secrets itself).
-- **Multi-provider LLMs** — OpenAI, Google Gemini, or local Ollama — set a different
-  provider/model per agent from the in-app **Settings**.
+- **Vision + DOM hybrid** — Microsoft **OmniParser** (vision) for native Windows apps, and
+  **Playwright** (real browser DOM) for websites — chosen automatically per task.
+- **Adaptive agent loop** — perceive → decide → act → verify → adapt; handles popups,
+  profile pickers, and loading screens on its own.
+- **Set-of-Mark grounding** — numbered on-screen elements so clicks land precisely.
+- **Human-in-the-loop** — pauses and asks you for OTPs, passwords, or confirmation;
+  never enters secrets itself.
+- **Multi-provider LLMs** — OpenAI, Google Gemini, or local Ollama; set a different
+  provider/model per agent in the in-app **Settings**.
 - **Skills library** — reliable keyboard-first shortcuts (open apps via Windows Search,
   navigate URLs, etc.).
-- Safety denylist for dangerous commands (cmd, powershell, regedit, …).
+- **Safety first** — denylist for dangerous commands (cmd, powershell, regedit, …) and an
+  emergency stop hotkey.
 
 ---
 
 ## 🧱 Architecture
 
-```
-        Desktop UI (PySide6)
-                │  HTTP
-        Backend (FastAPI) ── Orchestrator (adaptive ReAct loop)
-                │                 ├─ Planner / Navigator / Verifier  (LLM)
-                │                 ├─ Skills library
-                │                 ├─ Executor (mouse/keyboard, pyautogui)
-                │                 └─ mode router: web vs desktop
-                ├─ Desktop perception → OmniParser server (vision)  :8010
-                └─ Web perception/actions → Playwright (real Chrome DOM)
-```
+<p align="center">
+  <img src="assets/architecture.png" width="720" alt="architecture"/>
+</p>
+
+---
+
+## ⚡ Performance & Speed
+
+**Web tasks are fast on any machine** — they use the browser DOM, with no vision models.
+
+**Desktop tasks** use the OmniParser vision models. In the default setup these run on the
+**CPU**, so each screen analysis takes a few seconds up to ~a minute depending on your
+CPU and RAM. (Loading the models on first start also takes ~30s–2min.)
+
+> 🖥️ **The demo above was recorded on:** NVIDIA GeForce RTX 4060 Laptop GPU (8 GB) · Windows 11
+> Note: the default install runs the vision models on **CPU**, so this is CPU-speed — enabling
+> CUDA (see the GPU tip below) makes it significantly faster. Your speed scales with your hardware.
+
+**Tips to make it faster:**
+- **Prefer web tasks** when possible — they don't use the vision models at all.
+- **Lighten perception** — in `backend/app/perception/perceptor.py` set
+  `run_caption=False`, `max_side=1280`, `icon_size=640`. This skips the heavy Florence-2
+  captioning and uses a smaller image (much faster + less RAM; the Navigator still sees the
+  full screenshot).
+- **More RAM helps a lot** — loading the models when RAM is tight causes disk swapping.
+- **Use a GPU (optional)** — the default install uses CPU PyTorch. If you have an NVIDIA
+  GPU, installing CUDA PyTorch in `env_omniparser` speeds vision up dramatically.
 
 ---
 
 ## 🚀 Setup (one time)
 
-**Requirements:** Windows 10/11 and Google Chrome installed. **You do NOT need Python**
-— the setup downloads its own. (Git only needed if you clone instead of downloading a ZIP.)
+**Requirements:** Windows 10/11 and Google Chrome. **You do NOT need Python** — the setup
+downloads its own. (Git is only needed if you clone instead of downloading the ZIP.)
 
-1. **Get this repo** — download the ZIP from GitHub (Code → Download ZIP) and extract it,
-   or clone:
+1. **Get the repo** — *Code → Download ZIP* and extract, or:
+   ```bash
+   git clone https://github.com/Soham-bansal/Self-Operating-Computer-System.git
    ```
-   git clone https://github.com/<your-username>/self-operating-system.git
-   ```
-2. **Double-click `setup.bat`** (or run it in a terminal). It automatically:
-   - downloads a **self-contained Python 3.10** into `python310\` (so it works the same on
-     any machine, regardless of what Python you have installed — even 3.12)
-   - creates `env_operating\` (app) and `env_omniparser\` (perception) virtual environments
+2. **Double-click `setup.bat`.** It automatically:
+   - downloads a **self-contained Python 3.10** into `python310\` (works the same on any
+     machine — even if you have Python 3.12 installed)
+   - creates the `env_operating\` (app) and `env_omniparser\` (perception) environments
    - installs all dependencies (pinned to known-good versions)
-   - downloads the ~1 GB OmniParser model weights into `OmniParser\weights\`
+   - downloads the ~1 GB OmniParser model weights
 
-   The OmniParser perception code is **already bundled** in this repo (in `OmniParser\`),
-   so only the model weights are downloaded. Nothing else to clone.
+   The OmniParser perception code is **bundled** in this repo, so only the weights download.
+   It's a complete sandbox — everything lives inside the project folder.
 
-   > It's a complete sandbox — everything lives inside the project folder and uses the
-   > bundled Python 3.10, so a different system Python (e.g. 3.12) won't cause errors.
+   > **Resumable:** setup runs in 4 checkpointed steps. If one fails (e.g. a network drop),
+   > fix it and run `setup.bat` again — it skips finished steps and resumes. To redo one
+   > part, run the matching script in `setup_steps\`. For a clean rebuild, delete
+   > `.setup_state\` (and the `env_*` folders).
 
-   **Setup is resumable.** It runs in 4 checkpointed steps (Python → app env →
-   OmniParser env → weights). If a step fails (e.g. network drop), fix the issue and
-   **run `setup.bat` again** — it skips finished steps and resumes from the failed one.
-   To redo just one part, run the matching script in `setup_steps\` directly
-   (e.g. `setup_steps\3_env_omniparser.bat`). To start fully fresh, delete the
-   `.setup_state\` folder (and the `env_*` folders you want rebuilt).
+   ⏱️ Takes ~5–15 minutes depending on your connection.
 
-   Takes ~5–15 minutes depending on your connection.
-
-3. **Add your API keys** — start the app (below), click **⚙ Settings**, paste your
-   OpenAI and/or Gemini key, and choose a provider/model per agent.
+3. **Add your API key** — start the app, click **⚙ Settings**, paste your OpenAI and/or
+   Gemini key, and pick a provider/model per agent.
 
 ---
 
 ## ▶️ Run
 
 **Double-click `run.bat`.** It:
-1. starts the OmniParser perception server **hidden** (waits until its models are loaded)
+1. starts the OmniParser perception server **hidden** (waits until its models load)
 2. starts the backend **hidden** (waits until it's ready)
 3. opens the **desktop UI** — the only window you see
 
-The two servers run in the background (no terminal windows). Their output goes to
-`logs\omni_server.log` and `logs\backend.log` if you ever need to debug.
-When you close the UI, the background servers are stopped automatically.
+The servers run in the background (output → `logs\omni_server.log`, `logs\backend.log`).
+Closing the UI stops them automatically.
 
-Type a task, click **Run**, and watch it work. (The agent minimizes the UI so it can
-see the screen; it restores when done or when it needs your input.)
+Type a task, click **Run**, and watch it work. The agent minimizes the UI so it can see
+the screen, and restores it when done or when it needs your input.
 
 ---
 
@@ -100,20 +133,33 @@ see the screen; it restores when done or when it needs your input.)
 
 Configure per agent in **⚙ Settings**:
 
-| Provider | Get a key | Good models |
-|----------|-----------|-------------|
-| OpenAI | platform.openai.com | `gpt-4o` (navigator), `gpt-4.1-mini` (planner/verifier) |
-| Gemini (free tier) | aistudio.google.com/apikey | `gemini-2.5-flash` |
-| Ollama (local, free) | ollama.com | vision: `llama3.2-vision`; text: `llama3.1` |
+| Provider | Get a key | Suggested models |
+|----------|-----------|------------------|
+| **OpenAI** | platform.openai.com | `gpt-4o` (navigator), `gpt-4.1-mini` (planner/verifier) |
+| **Gemini** (free tier) | aistudio.google.com/apikey | `gemini-2.5-flash` |
+| **Ollama** (local, free) | ollama.com | vision: `llama3.2-vision` · text: `llama3.1` |
 
-> The **Navigator needs a vision model**. The Planner/Verifier can use cheaper text models.
+> The **Navigator needs a vision model**; the Planner/Verifier can use cheaper text models.
 
 ---
 
-## 🛠️ Folders created by setup (not in git)
+## 🧩 How it works
 
-- `env_operating\`, `env_omniparser\` — virtual environments (visible, so you can fix issues)
-- `OmniParser\` — the perception engine + weights
+| Stage | What it does |
+|-------|-------------|
+| **Router** | Decides web vs desktop (vs both) for the task |
+| **Planner** | Breaks the task into a loose plan |
+| **Perception** | OmniParser (vision) for desktop · Playwright DOM for web |
+| **Navigator** | Picks the next action from the screen/DOM |
+| **Executor** | Performs the click / type / scroll / hotkey |
+| **Verifier** | Checks progress, adapts, and asks you when needed |
+
+---
+
+## 🛠️ Folders created by setup (git-ignored)
+
+- `python310\`, `env_operating\`, `env_omniparser\` — the sandboxed Python + environments
+- `OmniParser\weights\` — the ~1 GB models
 - `agent_chrome_profile\` — the agent's dedicated Chrome profile
 - `logs\`, `debug\` — run logs and perception artifacts
 - `.env` — your keys/settings (never committed)
@@ -122,11 +168,18 @@ Configure per agent in **⚙ Settings**:
 
 ## ⚠️ Notes & limitations
 
-- The agent uses your **real Chrome** (a separate dedicated profile) for web tasks.
-  Log into sites once via that profile and it persists.
-- Browser tasks on heavily bot-protected sites (e.g. some shopping checkouts) may be limited.
-- This controls your real mouse/keyboard — supervise it, and keep the emergency stop handy
-  (`Ctrl+Shift+Q`).
+- The agent uses your **real Chrome** (a dedicated profile) for web tasks — log into sites
+  once in that profile and it persists.
+- Heavily bot-protected sites may limit some browser actions.
+- It controls your **real mouse and keyboard** — supervise it, and keep the emergency stop
+  ready (**`Ctrl+Shift+Q`**).
+
+---
+
+## 🤝 Contributing
+
+Issues and PRs are welcome! If you find this useful, please ⭐ **star the repo** — it really
+helps and keeps the project moving.
 
 ## 📄 License
 
