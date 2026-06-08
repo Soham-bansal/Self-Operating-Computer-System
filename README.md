@@ -147,5 +147,5 @@ MIT — see [LICENSE](LICENSE).
   <img src="https://img.shields.io/badge/python-3.10-3776AB?logo=python&logoColor=white" alt="python"/>
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license"/>
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="prs"/>
-  <img src="https://img.shields.io/github/stars/Soham-bansal/Self-Operating-Computer-System?style=social" alt="stars"/>
+  <img src="https://img.shields.io/github/stars/Soham-bansal/Autonomous-AI-Agent-For-Windows?style=social" alt="stars"/>
 </p>
